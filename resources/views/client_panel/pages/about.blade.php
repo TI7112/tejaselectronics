@@ -27,7 +27,7 @@
             </div>
         </div>
     </div>
-    <div class="py-5">
+    <div class="py-5 pb-10"> 
         <p class="text-center text-3xl font-semibold font-mono tracking-loose py-5">Our Team</p>
         <div class="flex flex-col-reverse md:flex-row justify-center gap-10 items-center px-4">
             <div class="md:w-3/4">

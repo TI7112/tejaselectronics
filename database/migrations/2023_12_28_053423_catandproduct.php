@@ -28,6 +28,7 @@ return new class extends Migration
             $table->text('original_price');
             $table->text('size')->nullable();
             $table->text('color')->nullable();
+            $table->text('rating')->default('0');
             $table->text('description')->nullable();
             $table->unsignedBigInteger('category');
             $table->foreign('category')->references('id')->on('tbl_category')->cascadeOnUpdate();
