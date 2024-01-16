@@ -50,9 +50,14 @@ Route::get('/update', function () {
 
     // foreach ($cat as $item) {
     //     $slug = strtolower(str_replace( " " , "-" , $item));
-    //     $category = Category::where('slug' , "$slug")->first();
+    //     $category = new Category();
 
+    //     $category -> name = $item ;
+    //     $category -> slug = strtolower($item) ;
     //     $category -> img = strtolower($item) . ".webp";
+
+    //     echo "<pre>";
+    //     print_r($category -> toArray());
 
     //     $category -> save();
     // }

@@ -10,26 +10,28 @@
         }
     </style>
 
-    <div class="hidden lg:flex overflow-handle overflow-x-scroll gap-5 md:px-20 px-4 py-5">
-        @foreach ($catbanner as $value)
-            <a class="hover:scale-110 w-40 duration-500" href="/category/{{ $value->slug }}">
-                <img class="w-20 h-20 rounded-full" src="{{ asset('upload/category/' . $value->img) }}" alt="">
-                <p class="text-center text-sm font-semibold">{{ $value->name }}</p>
-            </a>
-        @endforeach
+    <div class="flex justify-center w-full">
+        <div class="hidden w-[80%] lg:flex overflow-handle overflow-x-scroll gap-5  py-5">
+            @foreach ($catbanner as $value)
+                <a class="hover:scale-110 w-40 flex flex-col items-center duration-500" href="/category/{{ $value->slug }}">
+                    <img class="w-20 h-20 rounded-full" src="{{ asset('upload/category/' . $value->img) }}" alt="">
+                    <p class="text-center text-sm font-semibold">{{ $value->name }}</p>
+                </a>
+            @endforeach
+        </div>
     </div>
     <div class="swiper relative">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
             <!-- Slides -->
-            <div class="flex gap-5 justify-center items-center swiper-slide h-96">
-                <img class="h-full" src="{{ asset('upload/banner/banner.webp') }}" alt="">
+            <div class="flex w-full gap-5 justify-center items-center swiper-slide h-96">
+                <img class="h-full w-full" src="{{ asset('upload/banner/banner.webp') }}" alt="">
             </div>
-            <div class="flex gap-5 justify-center items-center swiper-slide h-96">
-                <img class="h-full" src="{{ asset('upload/banner/banner22.webp') }}" alt="">
+            <div class="flex w-full gap-5 justify-center items-center swiper-slide h-96">
+                <img class="h-full w-full" src="{{ asset('upload/banner/banner22.webp') }}" alt="">
             </div>
-            <div class="flex gap-5 justify-center items-center swiper-slide h-96">
-                <img class="h-full" src="{{ asset('upload/banner/banner33.webp') }}" alt="">
+            <div class="flex w-full gap-5 justify-center items-center swiper-slide h-96">
+                <img class="h-full w-full" src="{{ asset('upload/banner/banner33.webp') }}" alt="">
             </div>
 
             ...
@@ -38,15 +40,15 @@
         {{-- <div class="swiper-pagination"></div> --}}
 
         <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev text-zinc-800"></div>
-        <div class="swiper-button-next text-zinc-800"></div>
+        <div class="swiper-button-prev text-white mx-10"></div>
+        <div class="swiper-button-next text-white mx-10"></div>
 
         <!-- If we need scrollbar -->
         {{-- <div class="swiper-scrollbar"></div> --}}
     </div>
     {{-- Collections --}}
 
-    <div class="">
+    {{-- <div class="">
         <div class="md:px-20 px-4 py-5">
             <p class="text-2xl font-mono">Our Collection</p>
         </div>
@@ -67,11 +69,11 @@
                 </a>
             @endforeach
         </div>
-    </div>
+    </div> --}}
 
     {{-- Products --}}
 
-    <div class="">
+    {{-- <div class="">
         <div class="md:px-20 px-4 pt-10 pb-5">
             <p class="text-2xl font-mono">New Arrivals</p>
         </div>
@@ -109,7 +111,7 @@
                                 </svg>
                                 {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5 h-5" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                </svg> --}}
+                </svg> 
                             </button>
                         </div>
                         <div class="flex gap-2">
@@ -121,11 +123,11 @@
             </a>
             @endforeach
         </div>
-    </div>
+    </div> --}}
 
     {{-- Newsletter --}}
 
-    <div class="flex pt-5 flex-col bg-slate-800 items-center py-16">
+    {{-- <div class="flex pt-5 flex-col bg-slate-800 items-center py-16">
         <p class="text-xl md:text-4xl text-center text-white font-mono py-5">Sign Up for the <span
                 class="font-bold">NEWSLETTER</span></p>
         <div class="flex flex-col items-end gap-2">
@@ -134,7 +136,7 @@
             <button
                 class="bg-red-500 px-2 text-white rounded hover:bg-red-600 font-semibold py-0.5 border-2 border-red-500">Subscribe</button>
         </div>
-    </div>
+    </div> --}}
     <script>
         const swiper = new Swiper('.swiper', {
 

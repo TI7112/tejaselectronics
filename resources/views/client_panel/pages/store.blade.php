@@ -4,7 +4,8 @@
 
 @section('content')
 
-    <div class="bg-white">
+store page here
+    {{-- <div class="bg-white">
         <div class="flex lg:px-20 px-4 w-full">
             <div class="w-full flex justify-between bg-white px-4 rounded py-4">
                 <div class="flex">
@@ -62,7 +63,7 @@
                                         </svg>
                                         {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-5 h-5" viewBox="0 0 16 16">
                           <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                        </svg> --}}
+                        </svg> 
                                     </button>
                                 </div>
                                 <div class="flex gap-2">
@@ -85,6 +86,6 @@
             val = $('#category').val()
             window.open('/category/'+val , "_self");
         })
-    </script>
+    </script> --}}
 
 @endsection

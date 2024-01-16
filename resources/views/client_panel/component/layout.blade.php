@@ -14,7 +14,8 @@
 
 <body>
     {{-- header  --}}
-    <div class="fixed w-full z-50 border-b-4 border-red-500 flex justify-between bg-zinc-800 py-4 md:px-20 px-4">
+    <div class="fixed w-full z-50 border-b-4 border-red-500 flex justify-center bg-zinc-800">
+    <div class="w-[95%] md:w-[80%] flex justify-between py-4">
         <div class="flex w-full gap-4">
             <button onclick="handlemobilemenu()" class="md:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-10 h-10 text-white"
@@ -80,12 +81,13 @@
             </div>
         </div>
     </div>
+    </div>
     {{-- body  --}}
     <div class="pt-[78px] min-h-[50vh]">
         @yield('content')
     </div>
     {{-- footer  --}}
-    <div class="">
+    {{-- <div class="">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-5 px-4 md:px-20 bg-slate-900 py-4 md:py-8 text-white">
             <div class="">
                 <p class="text-2xl font-semibold font-mono uppercase">ABOUT US</p>
@@ -169,7 +171,7 @@
             <p>© 2023 All rights reserved | <a href="{{ route('home') }}">Tejas Group</a></p>
             <img src="{{ asset('static/payments.webp') }}" alt="">
         </div>
-    </div>
+    </div> --}}
 
     <script>
         const handlemobilemenu = () => {

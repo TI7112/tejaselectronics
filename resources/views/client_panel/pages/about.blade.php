@@ -4,6 +4,8 @@
 
 @section('content')
 
+About page
+{{-- 
 <div class="md:px-20">
     <div class="py-5">
         <p class="text-center text-3xl font-semibold font-mono tracking-loose py-5">About US</p>
@@ -59,5 +61,5 @@
         </div>
 
     </div>
-</div>
+</div> --}}
 @endsection

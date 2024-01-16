@@ -1,6 +1,0 @@
-<ifModule mod_rewrite.c>
-    RewriteEngine on
-    RewriteBase /
-    RewriteRule ^$ public/index.php [L]
-    RewriteRule ^((?!public/).*)$ public/$l [L,NC]
-</ifModule>
