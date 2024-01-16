@@ -12,7 +12,7 @@ class ClientController extends Controller
     
     public function home(Request $request){
         $category = Category::all();
-        $catbanner = Category::limit(11)->get();;
+        $catbanner = Category::limit(11)->get();
         $product = Product::orderBy('id' , "desc")->limit(4)->get();
         return view('client_panel.pages.home' , compact('category' , 'catbanner' , 'product'));
     }
