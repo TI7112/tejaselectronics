@@ -37,16 +37,56 @@
             ...
         </div>
         <!-- If we need pagination -->
-        {{-- <div class="swiper-pagination"></div> --}}
+        <div class="swiper-pagination pb-3"></div>
 
         <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev text-white mx-10"></div>
-        <div class="swiper-button-next text-white mx-10"></div>
+        <div class="hidden md:block swiper-button-prev text-white mx-10"></div>
+        <div class="hidden md:block swiper-button-next text-white mx-10"></div>
 
         <!-- If we need scrollbar -->
         {{-- <div class="swiper-scrollbar"></div> --}}
     </div>
     {{-- Collections --}}
+
+    <div class="flex justify-center w-full h-screen  ">
+        <div class="flex flex-col md:items-center md:w-[80%] px-4">
+            <div class="md:py-20 pt-12 pb-5">
+                <p class="text-xl md:text-4xl uppercase font-bold tracking-wider">Our Collection</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                @foreach ($category as $value)
+                    <a href="/category/{{ $value->slug }}">
+                        <div class="border-2 border-zinc-600 relative group bg-zinc-300 text-white rounded-xl overflow-hidden">
+                            <img class="rotate-12 group-hover:rotate-0 scale-125 group-hover:scale-100 duration-500 group-hover:brightness-75"
+                                src="{{ asset('upload/category/' . $value->img) }}" alt="">
+                            <div class="p-2 bg-[rgba(0,0,0,0.6)] absolute bottom-0 w-full flex justify-between items-end">
+                                <p class="text-xs md:text-xl font-semibold">{{ $value->name }}</p>
+                                <p
+                                    class="bg-white text-[10px] lg:text-base border-2 font-bold border-white hover:bg-transparent text-zinc-800 hover:text-white px-3 rounded-full">
+                                    Checkout</p>
+                            </div>
+                            <p class="text-[8px] md:text-xs bg-red-500 absolute text-white top-2 right-2 px-3 py-0.5 rounded">NEW</p>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     {{-- <div class="">
         <div class="md:px-20 px-4 py-5">
