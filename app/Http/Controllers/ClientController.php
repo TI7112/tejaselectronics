@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -52,14 +53,81 @@ class ClientController extends Controller
         return view('client_panel.pages.product' , compact('product' , 'category' , 'productsuggestion' ));
     }
     
+    public function privacy(Request $request){
+        $category = Category::all();
+        return view('client_panel.pages.privacy-policy' , compact('category'));
+    }
+    
     /****************Auth pages route*****************************/
     
     public function login(Request $request){
-        return view('client_panel.pages.auth.login');
+        $category = Category::all();
+        return view('client_panel.pages.auth.login' , compact('category'));
     }
 
     public function register(Request $request){
-        return view('client_panel.pages.auth.register');
+        $category = Category::all();
+        return view('client_panel.pages.auth.register' , compact('category'));
     }
+    
+    public function registerauth(Request $request){
+        
+        $check = User::where('email' , "$request->email")->orWhere('phone' , "$request->phone")->get();
+        if(count($check) == 0){
+            $user = new User();
+
+            $user->name= $request->name;
+            $user->email= $request->email;
+            $user->phone= $request->phone;
+            $user->password= md5($request->password);
+            $user->remember_token = sha1(time());
+            $user->save();
+
+            $request->session()->put('user' , $user->phone );
+            $request->session()->put('token' , $user->remember_token );
+
+            return redirect('/');
+        }
+        else{
+            return redirect()->back()->with('fail' , "Account already exist.");
+        }
+    }
+    
+     public function loginauth(Request $request)
+    {
+        $request->validate([
+            'phone' => 'required',
+            'password' => 'required'
+        ]);
+
+        $user = User::where('phone', "$request->phone")->first();
+        if(isset($user)){
+            if($user->password == md5($request->password)){
+                
+                $user -> remember_token = sha1(time());
+                $user->save();
+                $request->session()->put('user' , $user->phone );
+                $request->session()->put('token' , $user->remember_token );
+    
+                return redirect('/');  
+            }
+            else{
+                return back()->with('fail', 'You have enter wrong password');
+            }
+
+        }
+        else{
+            return back()->with('fail', 'No user Found');
+        }
+        
+    }
+
+    public function logout(Request $request)
+    {
+        session()->pull('user');
+        session()->pull('token');
+        return redirect('/login');
+    }
+
     
 }

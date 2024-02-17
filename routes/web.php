@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +22,25 @@ Route::get('/home', [ClientController::class, 'oldhome'])->name('oldhome');
 Route::get('/about', [ClientController::class, 'about'])->name('about');
 Route::get('/contact', [ClientController::class, 'contact'])->name('contact');
 Route::get('/store', [ClientController::class, 'store'])->name('store');
-Route::get('/category/{slug}', [ClientController::class, 'categoryfilter'])->name('categoryfilter');
+Route::get('/privacy-policy', [ClientController::class, 'privacy'])->name('privacy-policy');
 Route::get('/product/{slug}', [ClientController::class, 'product'])->name('product');
+Route::get('/category/{slug}', [ClientController::class, 'categoryfilter'])->name('categoryfilter');
 Route::get('/login', [ClientController::class, 'login'])->name('login');
+Route::get('/logout', [ClientController::class, 'logout'])->name('logout');
 Route::get('/register', [ClientController::class, 'register'])->name('register');
+Route::post('/auth/login', [ClientController::class, 'loginauth'])->name('client_login');
+Route::post('/auth/signup', [ClientController::class, 'registerauth'])->name('client_register');
 
+Route::middleware('clientlogin')->group(function () {
+    
+    Route::get('/check', function(){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+        return $user;
+    });
+
+});
 
 Route::get('/update', function () {
 
@@ -49,18 +64,15 @@ Route::get('/update', function () {
     // ];
 
     // foreach ($cat as $item) {
-    //     $slug = strtolower(str_replace( " " , "-" , $item));
     //     $category = new Category();
-
-    //     $category -> name = $item ;
-    //     $category -> slug = strtolower($item) ;
+    //     $category-> slug = strtolower(str_replace( " " , "-" , $item));
+    //     $category = Category::where('slug' , "$slug")->first();
+    //     $category -> name = $item;
     //     $category -> img = strtolower($item) . ".webp";
-
-    //     echo "<pre>";
-    //     print_r($category -> toArray());
 
     //     $category -> save();
     // }
+    // return "success";
 
     // $data = [
     //     ["name" => "bike", "price" => "1200", "category" => "2",],
