@@ -8,7 +8,7 @@
         <div class="md:flex gap-5 md:py-10 py-4">
             <div class="md:w-1/2">
                 @if (strlen($product->img) > 0)
-                    <img class="rounded w-full" src="{{asset('public/upload/product/' . $product->img) }}" alt="">
+                    <img class="rounded w-full" src="{{asset('upload/product/' . $product->img) }}" alt="">
                 @else
                     <img class="rounded" src="./" alt="Image not Available">
                 @endif
@@ -136,10 +136,10 @@
                                 class="border-2 border-zinc-600 relative group bg-zinc-900 text-white rounded-xl overflow-hidden">
                                 @if ($value->img)
                                     <img class="w-full h-60 duration-500 group-hover:brightness-75"
-                                        src="{{ asset('public/upload/product/' . $value->img) }}" alt="">
+                                        src="{{ asset('upload/product/' . $value->img) }}" alt="">
                                 @else
                                     <img class="w-full h-60 duration-500 group-hover:brightness-75"
-                                        src="{{ asset('public/upload/product/7.webp') }}" alt="">
+                                        src="{{ asset('upload/product/7.webp') }}" alt="">
                                 @endif
                                 <div class="p-2 flex justify-between items-center">
                                     <div class="w-full">

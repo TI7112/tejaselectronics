@@ -7,7 +7,7 @@
     <title>@yield('title') | Tejas Electronics</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="//cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
 </head>
@@ -29,25 +29,26 @@
                     <div class="">
                         <p class="text-2xl text-white px-5 pt-6">Quicklinks</p>
                         <div class="text-zinc-300 px-8 py-2 flex flex-col">
-                            <a href="{{route('home')}}" class="text-sm hover:underline">Home</a>
-                            <a href="{{route('about')}}" class="text-sm hover:underline">About</a>
-                            <a href="{{route('store')}}" class="text-sm hover:underline">Store</a>
-                            <a href="{{route('contact')}}" class="text-sm hover:underline">Support</a>
+                            <a href="{{ route('home') }}" class="text-sm hover:underline">Home</a>
+                            <a href="{{ route('about') }}" class="text-sm hover:underline">About</a>
+                            <a href="{{ route('store') }}" class="text-sm hover:underline">Store</a>
+                            <a href="{{ route('contact') }}" class="text-sm hover:underline">Support</a>
                         </div>
                     </div>
                     <div class="">
                         <p class="text-2xl text-white pt-6">Category</p>
                         <div class="text-zinc-300 list-disc p-2 flex flex-col">
                             @foreach ($category as $value)
-                            <li><a href="/category/{{$value->slug}}" class="text-sm hover:underline capitalize">{{$value->name}}</a></li>
+                                <li><a href="/category/{{ $value->slug }}"
+                                        class="text-sm hover:underline capitalize">{{ $value->name }}</a></li>
                             @endforeach
                         </div>
                     </div>
                 </div>
             </div>
             <div class="flex justify-center w-full lg:w-auto">
-                <a href="{{route('home')}}">
-                    <img class="w-24" src="{{ asset('public/static/logo.png') }}" alt="">
+                <a href="{{ route('home') }}">
+                    <img class="w-24" src="{{ asset('static/logo.png') }}" alt="">
                 </a>
             </div>
         </div>
@@ -56,15 +57,28 @@
             <a class="hover:underline hover:text-white duration-500" href="{{ route('about') }}">About</a>
             <a class="hover:underline hover:text-white duration-500" href="{{ route('store') }}">Store</a>
             <a class="hover:underline hover:text-white duration-500" href="{{ route('contact') }}">Contact us</a>
-             @if(session()->has('user'))
+            @if (session()->has('user'))
                 <div class="flex gap-3">
                     <div class="">
                         <img class="w-12 h-12 rounded-full" src="//picsum.photos/500/500" alt="">
                     </div>
-                    <div class="">
-                        <p class="mt-1 -mb-1">Mr {{ $user->name }}</p>
-                        <a class="text-red-500 hover:underline text-sm"
-                    href="{{ route('logout') }}">Logout</a>
+                    <div x-data="{ open: false }" class="flex flex-col">
+                        <button @click="open = !open" class="mt-1 -mb-1">Mr {{ $user->name }}</button>
+                        <div class="text-sm text-green-500 flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                class="w-8 h-8 -ml-2 -mt-1" viewBox="0 0 16 16">
+                                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+                            </svg>
+                            <p class="-ml-2">online</p>
+                        </div>
+                        <div x-show="open"
+                            class="w-48 absolute right-0 top-[84px] flex flex-col bg-zinc-100 text-zinc-800">
+                            <a class="w-full py-1 px-5 border-b-2 hover:bg-zinc-300 duration-300" href="{{ route('user_profile')}}">Profile</a>
+                            <a class="w-full py-1 px-5 border-b-2 hover:bg-zinc-300 duration-300" href="">Orders</a>
+                            <a class="w-full py-1 px-5 border-b-2 hover:bg-zinc-300 duration-300" href="">Wishlist</a>
+                            <a class="w-full py-1 px-5 border-b-2 hover:bg-zinc-300 duration-300" href="">Cart</a>
+                            <a class="w-full py-1 px-5 border-b-2 hover:bg-zinc-300 duration-300" href="{{ route('logout') }}">Logout</a>
+                        </div>
                     </div>
                 </div>
             @else
@@ -122,8 +136,8 @@
                                 d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
                         </svg>
                         <p class="flex flex-wrap">
-                            <a class="hover:underline hover:text-red-500 duration-500"
-                                href="tel:+9185271248246">+91 8527124824</a>
+                            <a class="hover:underline hover:text-red-500 duration-500" href="tel:+9185271248246">+91
+                                8527124824</a>
                             <!--<a class="hover:underline hover:text-red-500 duration-500" href="tel:7311154913">73111-->
                             <!--    54913,</a>-->
                             <!--<a class="hover:underline hover:text-red-500 duration-500" href="tel:18008430828">1800-->
@@ -156,9 +170,12 @@
             <div class="">
                 <p class="text-2xl font-semibold font-mono uppercase">INFORMATION</p>
                 <div class="flex flex-col gap-1 pt-3 text-sm px-2">
-                    <a class="hover:underline hover:text-red-500 duration-500" href="{{ route('about') }}">About Us</a>
-                    <a class="hover:underline hover:text-red-500 duration-500" href="{{ route('contact') }}">Contact Us</a>
-                    <a class="hover:underline hover:text-red-500 duration-500" href="{{ route('privacy-policy') }}">Privacy Policy</a>
+                    <a class="hover:underline hover:text-red-500 duration-500" href="{{ route('about') }}">About
+                        Us</a>
+                    <a class="hover:underline hover:text-red-500 duration-500" href="{{ route('contact') }}">Contact
+                        Us</a>
+                    <a class="hover:underline hover:text-red-500 duration-500"
+                        href="{{ route('privacy-policy') }}">Privacy Policy</a>
                     <a class="hover:underline hover:text-red-500 duration-500" href="">Returns And Refund
                         Polices</a>
                     <a class="hover:underline hover:text-red-500 duration-500" href="">Terms & Conditions</a>
@@ -169,7 +186,8 @@
                 <p class="text-2xl font-semibold font-mono uppercase">OUR SERVICES</p>
                 <div class="flex flex-col gap-1 pt-3 text-sm px-2">
                     <a class="hover:underline hover:text-red-500 duration-500" href="">Construction</a>
-                    <a class="hover:underline hover:text-red-500 duration-500" href="//evtejas.com">Electric Vehicles</a>
+                    <a class="hover:underline hover:text-red-500 duration-500" href="//evtejas.com">Electric
+                        Vehicles</a>
                     <a class="hover:underline hover:text-red-500 duration-500" href="">Solar Panels</a>
                     <a class="hover:underline hover:text-red-500 duration-500" href="">Electronic Goods</a>
                     <a class="hover:underline hover:text-red-500 duration-500" href="{{ route('contact') }}">Help</a>
@@ -179,7 +197,7 @@
         <div
             class="md:flex-row flex flex-col items-center gap-2 justify-between py-3 text-white text-sm bg-slate-800 md:px-20 px-4">
             <p>© 2023 All rights reserved | <a href="{{ route('home') }}">Tejas Group</a></p>
-            <img src="{{ asset('public/static/payments.webp') }}" alt="">
+            <img src="{{ asset('static/payments.webp') }}" alt="">
         </div>
     </div>
 

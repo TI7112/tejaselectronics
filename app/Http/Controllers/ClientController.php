@@ -12,50 +12,87 @@ class ClientController extends Controller
     /****************unprotected pages route*****************************/
     
     public function home(Request $request){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+        
         $category = Category::all();
         $catbanner = Category::limit(11)->get();
         $product = Product::orderBy('id' , "desc")->limit(4)->get();
-        return view('client_panel.pages.home' , compact('category' , 'catbanner' , 'product'));
+        return view('client_panel.pages.home' , compact('category' , 'catbanner' , 'product' , 'user'));
     }
 
     public function oldhome(Request $request){
         $category = Category::all();
-        return view('client_panel.pages.oldui.home' , compact('category'));
+        return view('client_panel.pages.oldui.home' , compact('category' , 'user'));
     }
 
     public function about(Request $request){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+        
         $category = Category::all();
-        return view('client_panel.pages.about' , compact('category'));
+        return view('client_panel.pages.about' , compact('category' , 'user'));
     }
 
     public function contact(Request $request){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+        
         $category = Category::all();
-        return view('client_panel.pages.contact' , compact('category'));
+        return view('client_panel.pages.contact' , compact('category' , 'user'));
     }
 
     public function store(Request $request){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+        
         $category = Category::all();
         $product = Product::orderBy('created_at' , "desc")->paginate(8);
-        return view('client_panel.pages.store' , compact('product' , 'category'));
+        return view('client_panel.pages.store' , compact('product' , 'category' , 'user'));
     }
     
     public function categoryfilter(Request $request , $slug){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+        
         $category = Category::all();
         $cat = Category::where('slug' , "$slug")->first();
         $product = Product::where('category' , $cat->id)->orderBy('created_at' , "desc")->paginate(8);
-        return view('client_panel.pages.categoryfilter' , compact('product' , 'category' , 'cat'));
+        return view('client_panel.pages.categoryfilter' , compact('product' , 'category' , 'cat' , 'user'));
     }
     
     public function product(Request $request , $slug){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+        
         $category = Category::all();
         $product = Product::where('slug' , "$slug")->first();
         $productsuggestion = Product::where('category' , $product->category)->paginate(4);
-        return view('client_panel.pages.product' , compact('product' , 'category' , 'productsuggestion' ));
+        return view('client_panel.pages.product' , compact('product' , 'category' , 'productsuggestion' , 'user' ));
     }
     
     public function privacy(Request $request){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+        
         $category = Category::all();
-        return view('client_panel.pages.privacy-policy' , compact('category'));
+        return view('client_panel.pages.privacy-policy' , compact('category' , 'user'));
+    }
+    
+    public function profile(Request $request){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+        
+        $category = Category::all();
+        return view('client_panel.pages.user-profile' , compact('category' , 'user'));
     }
     
     /****************Auth pages route*****************************/
@@ -64,12 +101,14 @@ class ClientController extends Controller
         $category = Category::all();
         return view('client_panel.pages.auth.login' , compact('category'));
     }
-
+    
     public function register(Request $request){
         $category = Category::all();
         return view('client_panel.pages.auth.register' , compact('category'));
     }
     
+    ############# post route ###################
+
     public function registerauth(Request $request){
         
         $check = User::where('email' , "$request->email")->orWhere('phone' , "$request->phone")->get();

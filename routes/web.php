@@ -33,6 +33,9 @@ Route::post('/auth/signup', [ClientController::class, 'registerauth'])->name('cl
 
 Route::middleware('clientlogin')->group(function () {
     
+    Route::get('/profile', [ClientController::class, 'profile'])->name('user_profile');
+
+
     Route::get('/check', function(){
         $session_user = session()->get('user');
         $session_token = session()->get('token');
