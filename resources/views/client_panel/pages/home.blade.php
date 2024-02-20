@@ -13,7 +13,7 @@
     <div class="hidden lg:flex overflow-handle overflow-x-scroll gap-5 md:px-20 px-4 py-5">
         @foreach ($catbanner as $value)
             <a class="flex flex-col items-center hover:scale-110 w-40 duration-500" href="/category/{{ $value->slug }}">
-                <img class="w-20 h-20 rounded-full" src="{{ asset('public/upload/category/' . $value->img) }}" alt="">
+                <img class="w-20 h-20 rounded-full" src="{{ asset('upload/category/' . $value->img) }}" alt="">
                 <p class="text-center text-sm font-semibold">{{ $value->name }}</p>
             </a>
         @endforeach
@@ -23,13 +23,13 @@
         <div class="swiper-wrapper">
             <!-- Slides -->
             <div class="flex gap-5 justify-center items-center swiper-slide h-96">
-                <img class="h-full w-full" src="{{ asset('public/upload/banner/banner.webp') }}" alt="">
+                <img class="h-full w-full" src="{{ asset('upload/banner/banner.webp') }}" alt="">
             </div>
             <div class="flex gap-5 justify-center items-center swiper-slide h-96">
-                <img class="h-full w-full" src="{{ asset('public/upload/banner/banner22.webp') }}" alt="">
+                <img class="h-full w-full" src="{{ asset('upload/banner/banner22.webp') }}" alt="">
             </div>
             <div class="flex gap-5 justify-center items-center swiper-slide h-96">
-                <img class="h-full w-full" src="{{ asset('public/upload/banner/banner33.webp') }}" alt="">
+                <img class="h-full w-full" src="{{ asset('upload/banner/banner33.webp') }}" alt="">
             </div>
 
             ...
@@ -55,7 +55,7 @@
                 <a href="/category/{{ $value->slug }}">
                     <div class="border-2 border-zinc-600 relative group bg-zinc-300 text-white rounded-xl overflow-hidden">
                         <img class="rotate-12 group-hover:rotate-0 scale-125 group-hover:scale-100 duration-500 group-hover:brightness-75"
-                            src="{{ asset('public/upload/category/' . $value->img) }}" alt="">
+                            src="{{ asset('upload/category/' . $value->img) }}" alt="">
                         <div class="p-2 bg-[rgba(0,0,0,0.6)] absolute bottom-0 w-full flex justify-between items-end">
                             <p class="text-sm lg:text-xl font-semibold">{{ $value->name }}</p>
                             <p
@@ -82,10 +82,10 @@
                     class="border-2 border-zinc-600 relative group bg-zinc-900 text-white rounded-xl overflow-hidden">
                     @if ($value->img)
                         <img class="w-full h-56 md:h-64 duration-500 group-hover:brightness-75"
-                            src="{{ asset('public/upload/product/' . $value->img) }}" alt="">
+                            src="{{ asset('upload/product/' . $value->img) }}" alt="">
                     @else
                         <img class="w-full h-56 md:h-64 duration-500 group-hover:brightness-75"
-                            src="{{ asset('public/upload/product/7.webp') }}" alt="">
+                            src="{{ asset('upload/product/7.webp') }}" alt="">
                     @endif
                     <div class="p-2 flex justify-between items-center">
                         <div class="w-full">

@@ -28,6 +28,7 @@ Route::get('/category/{slug}', [ClientController::class, 'categoryfilter'])->nam
 Route::get('/login', [ClientController::class, 'login'])->name('login');
 Route::get('/logout', [ClientController::class, 'logout'])->name('logout');
 Route::get('/register', [ClientController::class, 'register'])->name('register');
+Route::get('/order', [ClientController::class, 'client_order'])->name('client_order');
 Route::post('/auth/login', [ClientController::class, 'loginauth'])->name('client_login');
 Route::post('/auth/signup', [ClientController::class, 'registerauth'])->name('client_register');
 

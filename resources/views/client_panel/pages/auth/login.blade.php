@@ -17,7 +17,7 @@
                 <div
                     class="border-2 border-zinc-200 bg-white rounded-2xl shadow-xl flex flex-col gap-10 w-full justify-between p-4">
                     <div class="flex justify-center pt-3">
-                        <img class="w-20" src="{{asset('public/static/logo.png') }}" alt="">
+                        <img class="w-20" src="{{asset('static/logo.png') }}" alt="">
                     </div>
                     <div class="w-full flex flex-col gap-3 py-3">
                         @if (Session::has('fail'))

@@ -35,10 +35,10 @@
                             class="border-2 border-zinc-600 relative group bg-zinc-900 text-white rounded-xl overflow-hidden">
                             @if ($value->img)
                                 <img class="w-full h-60 duration-500 group-hover:brightness-75"
-                                    src="{{ asset('public/upload/product/' . $value->img) }}" alt="">
+                                    src="{{ asset('upload/product/' . $value->img) }}" alt="">
                             @else
                                 <img class="w-full h-60 duration-500 group-hover:brightness-75"
-                                    src="{{ asset('public/upload/product/7.webp') }}" alt="">
+                                    src="{{ asset('upload/product/7.webp') }}" alt="">
                             @endif
                             <div class="p-2 flex justify-between items-center">
                                 <div class="w-full">

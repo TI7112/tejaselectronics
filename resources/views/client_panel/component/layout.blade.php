@@ -47,7 +47,7 @@
             </div>
             <div class="flex justify-center w-full lg:w-auto">
                 <a href="{{route('home')}}">
-                    <img class="w-24" src="{{ asset('public/static/logo.png') }}" alt="">
+                    <img class="w-24" src="{{ asset('static/logo.png') }}" alt="">
                 </a>
             </div>
         </div>
@@ -179,7 +179,7 @@
         <div
             class="md:flex-row flex flex-col items-center gap-2 justify-between py-3 text-white text-sm bg-slate-800 md:px-20 px-4">
             <p>© 2023 All rights reserved | <a href="{{ route('home') }}">Tejas Group</a></p>
-            <img src="{{ asset('public/static/payments.webp') }}" alt="">
+            <img src="{{ asset('static/payments.webp') }}" alt="">
         </div>
     </div>
 
