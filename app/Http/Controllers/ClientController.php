@@ -60,7 +60,26 @@ class ClientController extends Controller
             $cart->save();
             return redirect()->back()->with('success' , "Cart updated successfully");
         }
+        
+    }
 
+    public function ajax_cart_update(Request $request){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+        
+        $id = substr($request->data , 40);
+        $cart = Cart::where('id' , $id)->first();
+        
+        if($request->quantity == "minus"){
+            $cart->quantity = intval($cart->quantity) - 1;
+        }
+        else{
+            $cart->quantity = intval($cart->quantity) + 1;
+        }
+
+        $cart->save();
+        return $cart;
     }
 
     public function add_to_wishlist(Request $request){

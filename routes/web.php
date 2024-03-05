@@ -42,7 +42,10 @@ Route::middleware('clientlogin')->group(function () {
     
     Route::post('/add_to_cart', [ClientController::class, 'add_to_cart'])->name('add_to_cart');
     Route::post('/add_to_wishlist', [ClientController::class, 'add_to_wishlist'])->name('add_to_wishlist');
-
+    
+    // ajax request
+    
+    Route::post('/ajax_cart_update', [ClientController::class, 'ajax_cart_update'])->name('ajax_cart_update');
 
 
 
