@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Cart;
+use App\Models\Wishlist;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -20,6 +23,53 @@ class ClientController extends Controller
         $catbanner = Category::limit(11)->get();
         $product = Product::orderBy('id' , "desc")->limit(4)->get();
         return view('client_panel.pages.home' , compact('category' , 'catbanner' , 'product' , 'user'));
+    }
+
+    public function client_cart(Request $request){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+        $delivery_charge = 150;
+
+        $category = Category::all();
+        $catbanner = Category::limit(11)->get();
+        $cart = Cart::where('user_id' , "$user->id")->orderBy('id' , "desc")->get();
+        return view('client_panel.pages.cart' , compact('category' , 'catbanner' , 'cart' , 'user' , 'delivery_charge'));
+    }
+
+    public function add_to_cart(Request $request){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+
+        $checkifproductalreadyadded = Cart::where('user_id' , "$user->id")->where('product_id' , "$request->product_id" )->first();
+
+        if(isset($checkifproductalreadyadded)){
+            $checkifproductalreadyadded -> quantity = intval($checkifproductalreadyadded->quantity) + intval($request->quantity) ;
+            $checkifproductalreadyadded -> save();
+            return redirect() -> back() -> with('success' , "Cart updated successfully");
+        }
+        else{
+           $cart = new Cart();
+    
+            $cart->product_id = $request->product_id ;
+            $cart->user_id = $user->id ;
+            $cart->quantity = $request->quantity ;
+            $cart->status = "Added";
+    
+            $cart->save();
+            return redirect()->back()->with('success' , "Cart updated successfully");
+        }
+
+    }
+
+    public function add_to_wishlist(Request $request){
+        $session_user = session()->get('user');
+        $session_token = session()->get('token');
+        $user = User::where('phone' , "$session_user")->orWhere('remember_token' , "$session_token")->first();
+        $product = Product::where("id" , "$request->product_id")->get();
+       
+        return $user;
     }
 
     public function oldhome(Request $request){

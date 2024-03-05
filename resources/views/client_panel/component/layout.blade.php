@@ -76,7 +76,7 @@
                             <a class="w-full py-1 px-5 border-b-2 hover:bg-zinc-300 duration-300" href="{{ route('user_profile')}}">Profile</a>
                             <a class="w-full py-1 px-5 border-b-2 hover:bg-zinc-300 duration-300" href="">Orders</a>
                             <a class="w-full py-1 px-5 border-b-2 hover:bg-zinc-300 duration-300" href="">Wishlist</a>
-                            <a class="w-full py-1 px-5 border-b-2 hover:bg-zinc-300 duration-300" href="">Cart</a>
+                            <a class="w-full py-1 px-5 border-b-2 hover:bg-zinc-300 duration-300" href="{{ route('client_cart')}}">Cart</a>
                             <a class="w-full py-1 px-5 border-b-2 hover:bg-zinc-300 duration-300" href="{{ route('logout') }}">Logout</a>
                         </div>
                     </div>

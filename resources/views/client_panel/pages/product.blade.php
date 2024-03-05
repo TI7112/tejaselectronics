@@ -6,14 +6,16 @@
 
     <div class="bg-white md:px-20 px-4">
         <div class="md:flex gap-5 md:py-10 py-4">
-            <div class="md:w-1/2">
+            <div class="md:w-1/2 md:px-10">
                 @if (strlen($product->img) > 0)
-                    <img class="rounded w-full" src="{{asset('upload/product/' . $product->img) }}" alt="">
+                    <img class="rounded h-96" src="{{asset('upload/product/' . $product->img) }}" alt="">
                 @else
                     <img class="rounded" src="./" alt="Image not Available">
                 @endif
             </div>
-            <div class="md:w-1/2">
+            <form method="POST" action="" class="md:w-1/2">
+                @csrf
+                <input hidden type="text" name="product_id" value="{{ $product->id }}">
                 <p class="text-2xl pt-1 font-semibold">{{ $product->name }}</p>
                 <div class="flex items-center gap-2">
                     <div class="flex text-yellow-600 md:p-2 px-1">
@@ -102,16 +104,16 @@
                 <div class="py-3">
                     <p class="font-semibold pb-1">Quantity</p>
                     <div class="flex items-center gap-1">
-                        <button class="bg-slate-800 rounded px-4 text-xl font-semibold text-white p-2"
+                        <button type="button" class="bg-slate-800 rounded px-4 text-xl font-semibold text-white p-2"
                             onclick="handleClick(this)">-</button>
                         <input class="w-10 px-2 outline-none border-2 py-2" type="text" name="quantity" id="quantity"
                             value="1">
-                        <button class="bg-slate-800 rounded px-3 text-xl font-semibold text-white p-2"
+                        <button type="button" class="bg-slate-800 rounded px-3 text-xl font-semibold text-white p-2"
                             onclick="handleClick(this)">+</button>
                     </div>
                 </div>
                 <div class="py-3 flex gap-3 items-center">
-                    <button class="text-red-500 ">
+                    <button type="button" onclick="handleWishlist()" name="addtowishlist" class="text-red-500 ">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 16 16">
                             <path
                                 d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
@@ -120,11 +122,11 @@
                             <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
                           </svg> --}}
                     </button>
-                    <button
+                    <button type="button" onclick="handleCart()" name="addToCart"
                         class="bg-red-600 border-2 border-red-600 hover:text-red-600 hover:bg-white duration-500 text-white uppercase rounded-xl px-6 py-1 font-semibold">Add
                         to cart</button>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="pb-5">
             <p class="text-3xl font-semibold font-mono">Products of your choice </p>
@@ -186,11 +188,24 @@
             if (params.innerText == "+") {
                 quantity.value = parseInt(quantity.value) + 1
             } else {
-                if (quantity.value > 0) {
+                if (quantity.value > 1) {
                     quantity.value = parseInt(quantity.value) - 1
                 }
             }
         }
+
+        const handleCart = () => {
+            let form = document.getElementsByTagName('form')[0];
+            form.action = "{{ route('add_to_cart') }}";
+            form.submit()
+        }
+
+        const handleWishlist = () => {
+            let form = document.getElementsByTagName('form')[0];
+            form.action = "{{ route('add_to_wishlist') }}";
+            form.submit()
+        }
+
     </script>
 
 @endsection
